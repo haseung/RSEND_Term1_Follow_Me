@@ -40,11 +40,11 @@ The FCN consists of two sections, an Encoder Block and a Decoder Block as shown 
 ![FCN Figure](/misc/FCN.JPG)
     
 
-**Encoder Block
+**Encoder Block**
 
 * The first portion of the FCN is the encoder block.  This consists of 3 operations of the encoder_block().  One instance of the encoder_block() receives an input layer, performs one separable convolution, one batch normalization, and returns the output layer.   The overall effect of the encoder block is converting the original input image from a 160x160x3 layer to a 1x1x128 convolutional layer.  The difference between a Fully CONNECTED Layer and a Fully CONVOLUTIONAL Layer (FCN) is the FCN preserves spatial information as the depth of each layer increases.    
 
-**Decoder Block
+**Decoder Block**
 
 * The second portion of the FCN is the decoder block.  Here we want to upsample the 1x1 CONVOLUTIONAL layer back to the original image size.  This consists of 3 operations of the decoder_block(), the same number of encoder_block().  One instance of the decoder_block() receives two input layers, a small one and a larger one, performs a Bilinear Upsample on the smaller input layer, concatentates the upsampled layer with the larger input layer, performs 2 separable convolutions/batch normalizations, and returns the output layer.  The overall effect of the decoder block is convering the 1x1x128 convolutional layer back to the original image size while retaining additional details from the previous larger layers.
 
@@ -52,7 +52,7 @@ The FCN consists of two sections, an Encoder Block and a Decoder Block as shown 
 
 With the data collected and the FCN code developed, the next step is to train the model.  The hyperparameters available for tuning are listed below with a brief description on how each were selected.
 
-**Hypyerparameters
+**Hypyerparameters**
 
 * learning_rate = 0.01 # The learning rate was tested by examing the results of various learning rates between 0.1 to 0.001.  0.001 and 0.01 both returned similar results and since we are using batch normalization the larger value was selected.
 
@@ -74,15 +74,15 @@ The prediction section provides a visual comparison of the images in a model run
 
 ![images while following the target](/misc/follow_target.jpeg)
 
-Images while following the target
+    *Images while following the target*
 
 ![comparison while at patrol without target](/misc/without_target.jpeg)
 
-Images while at patrol without target
+    *Images while at patrol without target*
 
 ![comparison while at patrol with target](/misc/with_target.jpeg)
 
-Images while at patrol with target
+    *Images while at patrol with target*
 
 ### VI. Evaluation
 
