@@ -86,7 +86,7 @@ The prediction section provides a visual comparison of the images in a model run
 
 ### VI. Evaluation
 
-Initially, the FCN was built using a 2 encode/2 decode layout which resulted in an accuracy of 33%.  Analyzing the false positives and false negatives in the final output and comparing the results with the prediction images, it was clear more spatial information was needed to be passed through the network.  Adding an additional encode/decode layer to the FCN preserved the required spatial information enough for the model to reach an accuracy of 40.6%.  
+Initially, the FCN was built using a 2 encode/2 decode layout which resulted in an accuracy of 33%.  Analyzing the false positives and false negatives in the final output and comparing the results with the prediction images, it was clear more spatial information was needed to be passed through the network.  Adding an additional encode/decode layer to the FCN preserved the required spatial information enough for the model to reach an accuracy of 40.6%.  See model and weights file **'pass_model_weights'** and **'config_pass_model_weights'**.
 
 This model could be used to follow any object however a different dataset would need to be provided as the current dataset is specifically for human target.  If the goal was to follow a dog instead, the follow target and patrol with target datasets would need to include images of dog while the patrol without target would be without.  This will allow the model to learn to classify the characteristics of the dog from the surrounding environment just as the current model does for a human.    
 
