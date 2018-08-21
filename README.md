@@ -14,20 +14,16 @@ The following README is for the Udacity Robotics Software Engineering Nanodegree
 ### The Network Architecture
 The FCN employs a deep learning network that locates a particular human target within an image which allows a simulated quadcopter to follow around the person it detects.  The code consists of 6 sections.
 
-I. Data Collection
-II. FCN layers
-III. Building the model
-IV. Training
-V. Prediction
-VI. Evaluation
+* I. Data Collection
+* II. FCN layers
+* III. Building the model
+* IV. Training
+* V. Prediction
+* VI. Evaluation
 
 I. Data Collection
 
-The dataset used for this project was the starting dataset provided by the default github repository from Udacity:
-
-https://github.com/udacity/RoboND-DeepLearning-Project.git
-
-The starting dataset comprises of a training set of 4131 images and a validation set of 1184 images which was sufficient to obtain the required accuracy of 40%.  In order for the model to run the image files must be downloaded and exported into the correct folders under /data/train and /data/validation respectively.
+The dataset used for this project was the starting dataset provided by the default github repository [here](https://github.com/udacity/RoboND-DeepLearning-Project.git) from Udacity.  The starting dataset comprises of a training set of 4131 images and a validation set of 1184 images which was sufficient to obtain the required accuracy of 40%.  In order for the model to run the image files must be downloaded and exported into the correct folders under /data/train and /data/validation respectively.
 
 II. FCN layers
 
@@ -40,10 +36,10 @@ Here the layers for the FCN are defined.  The convolutional layers used in the F
 III. Building the model
 
 The FCN consists of two sections, an Encoder Block and a Decoder Block as shown in the figure below.
-	[Figure of FCN]
+	![FCN Figure](/misc/FCN.jpg)
     
 
-    *Encoder Block
+    * Encoder Block
 
 	* The first portion of the FCN is the encoder block.  This consists of 3 operations of the encoder_block().  One instance of the encoder_block() receives an input layer, performs one separable convolution, one batch normalization, and returns the output layer.   The overall effect of the encoder block is converting the original input image from a 160x160x3 layer to a 1x1x128 convolutional layer.  The difference between a Fully CONNECTED Layer and a Fully CONVOLUTIONAL Layer (FCN) is the FCN preserves spatial information as the depth of each layer increases.    
 
@@ -57,18 +53,18 @@ With the data collected and the FCN code developed, the next step is to train th
 
 * Hypyerparameters
 
-	a. learning_rate = 0.01 # The learning rate was tested by examing the results of various learning rates between 0.1 to 0.001.  0.001 and 0.01 both returned similar results and since we are using batch normalization the larger value was selected.
+	* learning_rate = 0.01 # The learning rate was tested by examing the results of various learning rates between 0.1 to 0.001.  0.001 and 0.01 both returned similar results and since we are using batch normalization the larger value was selected.
 	
-	b. batch_size = 128 # The batch size was selected as an increasing power of 2 until the accuracy improved to the required accuracy.
+	* batch_size = 128 # The batch size was selected as an increasing power of 2 until the accuracy improved to the required accuracy.
 
-	c. num_epochs = 10 # The num of epcohs was chosen as a comparison of 10 to 50 epochs indicated the validation loss converges after 10 epochs
+	* num_epochs = 10 # The num of epcohs was chosen as a comparison of 10 to 50 epochs indicated the validation loss converges after 10 epochs
 	![train_vs_val_loss](/misc/train_vs_val_loss.jpeg)
 
-	d. steps_per_epoch = 130 # Equivalent to the training image set (4131)/ batch_size (128)
+	* steps_per_epoch = 130 # Equivalent to the training image set (4131)/ batch_size (128)
 	
-	e. validation_steps = 10 # Equivalent to the validation set (1184) / batch_size (128)
+	* validation_steps = 10 # Equivalent to the validation set (1184) / batch_size (128)
 	
-	f. workers = 2 (used default value)
+	* workers = 2 (used default value)
 
 5. Prediction
 
